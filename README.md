@@ -13,4 +13,4 @@ Licensing for this application can be found at: [LICENSE.md](LICENSE.md).
 The jjversion-gha-output license applies to all parts of the application that are not
 externally maintained libraries and dependencies.
 
-The main dependency of jjversion-gha-output is <https://github.com/jjliggett/jjversion>. In addition to jjversion, there are many indirect dependencies. Details on these dependencies can be found in the jjversion repository at <https://github.com/jjliggett/jjversion/blob/root/docs/NOTICE.md> along with the related files in the notices directory.
+The main dependency of jjversion-gha-output is the jjvercore Go package in <https://github.com/jjliggett/jjversion>. In addition to jjversion, there are many indirect dependencies. Details on these dependencies can be found in the jjversion repository at <https://github.com/jjliggett/jjversion/blob/root/docs/ATTRIBUTIONS.md> along with the related files in the attributions directory.

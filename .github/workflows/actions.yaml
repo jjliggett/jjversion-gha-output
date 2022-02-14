@@ -1,18 +1,18 @@
 name: actions
 on: [push, pull_request]
 jobs:
-  actions:
+  test:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-    name: actions
+    name: test
     runs-on: ${{ matrix.os }}
     defaults:
       run:
         shell: pwsh
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@230611dbd0eb52da1e1f4f7bc8bb0c3a339fc8b7
         with:
           fetch-depth: 0
       - run: Get-ChildItem -Force
@@ -28,22 +28,22 @@ jobs:
           echo "Sha: ${{ steps.jjversion.outputs.sha }}"
           echo "ShortSha: ${{ steps.jjversion.outputs.shortSha }}"
 
-  actions-skip-input:
+  test-skip-input:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-    name: actions-skip-input
+    name: test-skip-input
     runs-on: ${{ matrix.os }}
     defaults:
       run:
         shell: pwsh
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@230611dbd0eb52da1e1f4f7bc8bb0c3a339fc8b7
         with:
           fetch-depth: 0
       - run: Get-ChildItem -Force
-      - uses: actions/setup-go@v2
+      - uses: actions/setup-go@bfdd3570ce990073878bf10f6b2d79082de49492
       - name: Run action
         uses: ./
         with:
@@ -57,3 +57,80 @@ jobs:
           echo "MajorMinorPatch: ${{ steps.jjversion.outputs.majorMinorPatch }}"
           echo "Sha: ${{ steps.jjversion.outputs.sha }}"
           echo "ShortSha: ${{ steps.jjversion.outputs.shortSha }}"
+
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@230611dbd0eb52da1e1f4f7bc8bb0c3a339fc8b7
+        with:
+          fetch-depth: 0
+      - run: git log --oneline
+      - name: Run action
+        uses: ./
+        with:
+          skip-go-installation: true
+        id: jjversion
+      - run: echo "VERSION=$(echo ${{ steps.jjversion.outputs.majorMinorPatch }})" >> $GITHUB_ENV
+      - run: git reset --soft HEAD~1
+      - name: Run action for previous commit version
+        uses: ./
+        with:
+          skip-go-installation: true
+        id: previousversion
+      - run: echo "PREVIOUS_COMMIT_VERSION=$(echo ${{ steps.previousversion.outputs.majorMinorPatch }})" >> $GITHUB_ENV
+      - uses: actions/checkout@230611dbd0eb52da1e1f4f7bc8bb0c3a339fc8b7
+        with:
+          repository: jjliggett/jjversion
+          ref: 8d5c529715bc9d90834e0bd1a7ec472181eaf05f
+          path: jjversion-core
+          clean: false
+      - run: ls -R
+      - run: go build -a -v -o jjversion-ghao-${{ env.VERSION }}-linux-x64/jjversion-ghao
+      - run: env GOOS=darwin GOARCH=amd64 go build -a -v -o jjversion-ghao-${{ env.VERSION }}-darwin-amd64/jjversion-ghao-darwin
+      - run: env GOOS=windows GOARCH=amd64 go build -a -v -o jjversion-ghao-${{ env.VERSION }}-windows-x64/jjversion-ghao.exe
+      - run: mkdir docs-and-licenses
+      - run: cp README.md docs-and-licenses
+      - run: cp LICENSE.md docs-and-licenses
+      - run: cp ATTRIBUTIONS.md docs-and-licenses
+      - run: cp jjversion-core/README.md docs-and-licenses/jjversion-core-README.md
+      - run: cp jjversion-core/LICENSE.md docs-and-licenses/jjversion-core-LICENSE.md
+      - run: cp jjversion-core/docs/ATTRIBUTIONS.md docs-and-licenses/jjversion-core-ATTRIBUTIONS.md
+      - run: mkdir docs-and-licenses/attributions
+      - run: cp -R jjversion-core/docs/attributions/. docs-and-licenses/attributions
+      - run: zip -r jjversion-ghao-docs-and-licenses-${{ env.VERSION }}.zip docs-and-licenses
+      - run: ls -R
+      - name: Upload jjversion-ghao
+        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2
+        with:
+          name: jjversion-ghao
+          path: jjversion-ghao-${{ env.VERSION }}-linux-x64/jjversion-ghao
+      - name: Upload jjversion-ghao-darwin
+        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2
+        with:
+          name: jjversion-ghao-darwin
+          path: jjversion-ghao-${{ env.VERSION }}-darwin-amd64/jjversion-ghao-darwin
+      - name: Upload jjversion-ghao-darwin
+        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2
+        with:
+          name: jjversion-ghao.exe
+          path: jjversion-ghao-${{ env.VERSION }}-windows-x64/jjversion-ghao.exe
+      - name: Upload docs
+        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2
+        with:
+          name: jjversion-ghao-docs-and-licenses-${{ env.VERSION }}.zip
+          path: jjversion-ghao-docs-and-licenses-${{ env.VERSION }}.zip
+      - name: Create GitHub release
+        uses: marvinpinto/action-automatic-releases@d68defdd11f9dcc7f52f35c1b7c236ee7513bcc1
+        if: ${{ github.ref == 'refs/heads/root' && env.VERSION != env.PREVIOUS_COMMIT_VERSION }}
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: v${{ env.VERSION }}
+          prerelease: false
+          files: |
+            jjversion-ghao-${{ env.VERSION }}-linux-x64/jjversion-ghao
+            jjversion-ghao-${{ env.VERSION }}-darwin-amd64/jjversion-ghao-darwin
+            jjversion-ghao-${{ env.VERSION }}-windows-x64/jjversion-ghao.exe
+            README.md
+            LICENSE.md
+            jjversion-ghao-docs-and-licenses-${{ env.VERSION }}.zip
