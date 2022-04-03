@@ -122,8 +122,7 @@ jobs:
           path: jjversion-ghao-docs-and-licenses-${{ env.VERSION }}.zip
       - name: Create GitHub release
         uses: marvinpinto/action-automatic-releases@d68defdd11f9dcc7f52f35c1b7c236ee7513bcc1
-        #if: ${{ github.ref == 'refs/heads/root' && env.VERSION != env.PREVIOUS_COMMIT_VERSION }}
-        if: ${{ github.ref == 'refs/heads/root' }}
+        if: ${{ github.ref == 'refs/heads/root' && env.VERSION != env.PREVIOUS_COMMIT_VERSION }}
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: v${{ env.VERSION }}
