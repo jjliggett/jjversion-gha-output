@@ -1,6 +1,6 @@
 module github.com/jjliggett/jjversion-gha-output
 
-go 1.18
+go 1.19
 
 require github.com/jjliggett/jjversion v0.5.6
 
