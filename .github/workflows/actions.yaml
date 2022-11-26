@@ -16,7 +16,7 @@ on:
       - ATTRIBUTIONS.md
       - '.github/workflows/codeql-analysis.yaml'
       - '.github/dependabot.yaml'
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   test:
