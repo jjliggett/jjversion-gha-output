@@ -37,8 +37,8 @@ github.com/imdario/mergo v0.3.13/go.mod h1:4lJ1jqUDcsbIECGy0RUJAXNIhg+6ocWgb1ALK
 github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 h1:BQSFePA1RWJOlocH6Fxy8MmwDt+yVQYULKfN0RoTN8A=
 github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99/go.mod h1:1lJo3i6rXxKeerYnT8Nvf0QmHCRC1n8sfWVwXF2Frvo=
 github.com/jessevdk/go-flags v1.5.0/go.mod h1:Fw0T6WPc1dYxT4mKEZRfG5kJhaTDP9pj1c2EWnYs/m4=
-github.com/jjliggett/jjversion v0.5.22 h1:DKL+xWfelRtYwrypkPmrK2EXpG1QSdtAmxIg+h9yYHQ=
-github.com/jjliggett/jjversion v0.5.22/go.mod h1:W387lntLo5V393DAy3oa7p8Dml8PHM4S793GbFiJ948=
+github.com/jjliggett/jjversion v0.5.24 h1:QJIN8ALEd5kBuhT6yvUprVijwhB3RyXC90x3+ELozkI=
+github.com/jjliggett/jjversion v0.5.24/go.mod h1:W387lntLo5V393DAy3oa7p8Dml8PHM4S793GbFiJ948=
 github.com/kevinburke/ssh_config v1.2.0 h1:x584FjTGwHzMwvHx18PXxbBVzfnxogHaAReU4gf13a4=
 github.com/kevinburke/ssh_config v1.2.0/go.mod h1:CT57kijsi8u/K/BOFA39wgDQJ9CxiF4nAY/ojJ6r6mM=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
