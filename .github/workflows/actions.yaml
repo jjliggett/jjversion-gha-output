@@ -30,7 +30,7 @@ jobs:
         shell: pwsh
     steps:
       - name: Checkout
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+        uses: actions/checkout@24cb9080177205b6e8c946b17badbe402adc938f
         with:
           fetch-depth: 0
       - run: Get-ChildItem -Force
@@ -57,7 +57,7 @@ jobs:
         shell: pwsh
     steps:
       - name: Checkout
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+        uses: actions/checkout@24cb9080177205b6e8c946b17badbe402adc938f
         with:
           fetch-depth: 0
       - run: Get-ChildItem -Force
@@ -80,7 +80,7 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+      - uses: actions/checkout@24cb9080177205b6e8c946b17badbe402adc938f
         with:
           fetch-depth: 0
       - run: git log --oneline
@@ -97,7 +97,7 @@ jobs:
           skip-go-installation: true
         id: previousversion
       - run: echo "PREVIOUS_COMMIT_VERSION=$(echo ${{ steps.previousversion.outputs.majorMinorPatch }})" >> $GITHUB_ENV
-      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+      - uses: actions/checkout@24cb9080177205b6e8c946b17badbe402adc938f
         with:
           repository: jjliggett/jjversion
           ref: 8d5c529715bc9d90834e0bd1a7ec472181eaf05f
