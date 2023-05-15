@@ -7,6 +7,7 @@ on:
       - ATTRIBUTIONS.md
       - '.github/workflows/codeql-analysis.yaml'
       - '.github/dependabot.yaml'
+      - '.gitignore'
     branches:
       - root
   pull_request:
@@ -16,6 +17,7 @@ on:
       - ATTRIBUTIONS.md
       - '.github/workflows/codeql-analysis.yaml'
       - '.github/dependabot.yaml'
+      - '.gitignore'
   workflow_dispatch:
 
 jobs:
