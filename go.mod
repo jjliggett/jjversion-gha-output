@@ -2,7 +2,7 @@ module github.com/jjliggett/jjversion-gha-output
 
 go 1.20
 
-require github.com/jjliggett/jjversion v0.5.32
+require github.com/jjliggett/jjversion v0.5.35
 
 require (
 	github.com/Microsoft/go-winio v0.6.1 // indirect
