@@ -121,22 +121,22 @@ jobs:
       - run: zip -r jjversion-ghao-docs-and-licenses-${{ env.VERSION }}.zip docs-and-licenses
       - run: ls -R
       - name: Upload jjversion-ghao
-        uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32
+        uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392 # v4.0.0
         with:
           name: jjversion-ghao
           path: jjversion-ghao-${{ env.VERSION }}-linux-x64/jjversion-ghao
       - name: Upload jjversion-ghao-darwin
-        uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32
+        uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392 # v4.0.0
         with:
           name: jjversion-ghao-darwin
           path: jjversion-ghao-${{ env.VERSION }}-darwin-amd64/jjversion-ghao-darwin
       - name: Upload jjversion-ghao-darwin
-        uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32
+        uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392 # v4.0.0
         with:
           name: jjversion-ghao.exe
           path: jjversion-ghao-${{ env.VERSION }}-windows-x64/jjversion-ghao.exe
       - name: Upload docs
-        uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32
+        uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392 # v4.0.0
         with:
           name: jjversion-ghao-docs-and-licenses-${{ env.VERSION }}.zip
           path: jjversion-ghao-docs-and-licenses-${{ env.VERSION }}.zip
