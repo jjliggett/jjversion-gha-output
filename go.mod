@@ -2,7 +2,7 @@ module github.com/jjliggett/jjversion-gha-output
 
 go 1.21
 
-require github.com/jjliggett/jjversion v0.5.62
+require github.com/jjliggett/jjversion v0.5.63
 
 require (
 	dario.cat/mergo v1.0.0 // indirect
@@ -25,7 +25,7 @@ require (
 	golang.org/x/mod v0.14.0 // indirect
 	golang.org/x/net v0.19.0 // indirect
 	golang.org/x/sys v0.15.0 // indirect
-	golang.org/x/tools v0.15.0 // indirect
+	golang.org/x/tools v0.16.1 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
