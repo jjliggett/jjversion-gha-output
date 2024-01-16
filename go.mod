@@ -2,7 +2,7 @@ module github.com/jjliggett/jjversion-gha-output
 
 go 1.21
 
-require github.com/jjliggett/jjversion v0.5.64
+require github.com/jjliggett/jjversion v0.5.65
 
 require (
 	dario.cat/mergo v1.0.0 // indirect
