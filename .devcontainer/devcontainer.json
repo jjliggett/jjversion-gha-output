@@ -4,8 +4,8 @@
         "dockerfile": "Dockerfile"
     },
 	"features": {
-        "ghcr.io/devcontainers/features/common-utils:2.1.0": {},
-		"ghcr.io/devcontainers/features/go:1.2.0": {
+        "ghcr.io/devcontainers/features/common-utils:2.4.1": {},
+		"ghcr.io/devcontainers/features/go:1.2.2": {
 			"version": "1.21.0"
 		}
 	},
