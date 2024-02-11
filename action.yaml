@@ -4,11 +4,6 @@ author: "jjliggett"
 branding:
   icon: "tag"
   color: "blue"
-inputs:
-  skip-go-installation:
-    description: "If set to true, then the action uses pre-installed Go"
-    default: "false"
-    required: false
 outputs:
   major:
     description: "Major version"
@@ -32,12 +27,6 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Setup Go unless skip-go-installation is true
-      uses: ChristopherHX/conditional@3fce4b7a3171a839b482306f9fd3aba0c2112a24
-      with:
-        if: ${{ inputs.skip-go-installation == 'true' }}
-        step: |
-          uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
     - run: |
         if ($env:RUNNER_OS -eq "Windows")
         {
