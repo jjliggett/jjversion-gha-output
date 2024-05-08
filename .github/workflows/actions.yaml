@@ -121,7 +121,7 @@ jobs:
           name: jjversion-ghao-docs-and-licenses-${{ env.VERSION }}.zip
           path: jjversion-ghao-docs-and-licenses-${{ env.VERSION }}.zip
       - name: Create GitHub release
-        uses: softprops/action-gh-release@9d7c94cfd0a1f3ed45544c887983e9fa900f0564 # v2.0.4
+        uses: softprops/action-gh-release@69320dbe05506a9a39fc8ae11030b214ec2d1f87 # v2.0.5
         if: ${{ github.ref == 'refs/heads/root' && env.VERSION != env.PREVIOUS_COMMIT_VERSION }}
         with:
           token: ${{ secrets.GITHUB_TOKEN  }}
